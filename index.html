@@ -3,82 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudo: Fotossíntese</title>
+    <title>Portal de Estudos - Biologia</title>
     <style>
         :root {
-            --primary-green: #2d5a27;
-            --light-green: #e8f5e9;
-            --accent-yellow: #ffeb3b;
-            --text-dark: #333;
+            --primary-color: #2d6a4f;
+            --secondary-color: #40916c;
+            --bg-color: #f8f9fa;
+            --text-color: #1b4332;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0;
-            background-color: #f4f7f4;
-            color: var(--text-dark);
+            padding: 20px;
+            line-height: 1.6;
         }
 
         header {
-            background-color: var(--primary-green);
-            color: white;
-            padding: 2rem;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 40px 0;
+            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 30px;
         }
 
-        main {
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content-menu {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .card {
+            margin: 0 auto;
             background: white;
-            border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-green);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         h2 {
-            color: var(--primary-green);
-            border-bottom: 2px solid var(--light-green);
-            padding-bottom: 5px;
-        }
-
-        .formula {
-            background-color: #222;
-            color: #00ff00;
-            padding: 15px;
-            border-radius: 5px;
             text-align: center;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1.2rem;
-            overflow-x: auto;
+            color: var(--secondary-color);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
+        ul {
+            list-style: none;
+            padding: 0;
         }
 
-        th, td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
+        li {
+            background: #d8f3dc;
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 4px;
+            transition: transform 0.2s;
+            cursor: pointer;
         }
 
-        th {
-            background-color: var(--light-green);
+        li:hover {
+            transform: translateX(10px);
+            background: #b7e4c7;
+        }
+
+        .equations-section {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .equations-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
+            margin-top: 50px;
             font-size: 0.9rem;
             color: #666;
         }
@@ -87,56 +93,32 @@
 <body>
 
     <header>
-        <h1>Biologia: Fotossíntese</h1>
-        <p>Transformando luz em energia e vida.</p>
+        <h1>Explorando a Biologia</h1>
     </header>
 
     <main>
-        <section class="card">
-            <h2>O que é?</h2>
-            <p>A fotossíntese é o processo pelo qual plantas, algas e algumas bactérias convertem energia luminosa em energia química, produzindo <strong>glicose</strong> e liberando <strong>oxigênio</strong>.</p>
+        <section class="content-menu">
+            <h2>📚 Tópicos de Estudo</h2>
+            <ul>
+                <li><strong>1. Citologia:</strong> Estudo das células, organelas e processos metabólicos celulares.</li>
+                <li><strong>2. Genética:</strong> Hereditariedade, DNA, RNA e as leis de Mendel.</li>
+                <li><strong>3. Ecologia:</strong> Relações entre seres vivos e o meio ambiente, biomas e cadeias alimentares.</li>
+                <li><strong>4. Evolução:</strong> Seleção natural, adaptação e a história da vida na Terra.</li>
+                <li><strong>5. Fisiologia Humana:</strong> Funcionamento dos sistemas do corpo (digestório, circulatório, etc).</li>
+            </ul>
         </section>
 
-        <section class="card">
-            <h2>A Equação Química</h2>
-            <p>De forma simplificada, a reação ocorre assim:</p>
-            <div class="formula">
-                6CO₂ + 6H₂O + Luz → C₆H₁₂O₆ + 6O₂
+        <section class="equations-section">
+            <h2>🧪 Fórmulas e Equações Fundamentais</h2>
+            <p>Muitos processos biológicos podem ser descritos matematicamente, como o Equilíbrio de Hardy-Weinberg e a Taxa Metabólica.</p>
+            <div class="image-container">
+                
             </div>
         </section>
-
-        <section class="card">
-            <h2>As Fases Principais</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fase</th>
-                        <th>Onde ocorre</th>
-                        <th>O que acontece</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Clara (Fotoquímica)</strong></td>
-                        <td>Tilacoides</td>
-                        <td>Quebra da água e produção de ATP/NADPH.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Escura (Química)</strong></td>
-                        <td>Estroma</td>
-                        <td>Fixação do carbono para formar açúcar (Ciclo de Calvin).</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <blockquote>
-            "Sem clorofila, sem festa." — Provérbio botânico imaginário.
-        </blockquote>
     </main>
 
     <footer>
-        <p>&copy; 2026 - Material de Apoio Escolar</p>
+        <p>&copy; 2026 Portal de Estudos Biológicos - Conhecimento para a Vida.</p>
     </footer>
 
 </body>
