@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Estudos Científicos</title>
+    <style>
+        :root {
+            --bio-color: #2d6a4f;
+            --qui-color: #0077b6;
+            --geo-color: #a47148;
+            --bg-body: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .subject-column {
+            flex: 1;
+            padding: 40px 30px;
+            /* As "linhas verticais" são criadas com as bordas laterais */
+            border-right: 1px solid #eee;
+            transition: background 0.3s ease;
+        }
+
+        .subject-column:last-child {
+            border-right: none;
+        }
+
+        .subject-column:hover {
+            background-color: #fafafa;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            border-bottom: 3px solid;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Cores Temáticas */
+        .bio h2 { color: var(--bio-color); border-color: var(--bio-color); }
+        .qui h2 { color: var(--qui-color); border-color: var(--qui-color); }
+        .geo h2 { color: var(--geo-color); border-color: var(--geo-color); }
+
+        p.description {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 4px solid #ddd;
+        }
+
+        /* Destaque das listas no hover */
+        .bio li { border-left-color: var(--bio-color); }
+        .qui li { border-left-color: var(--qui-color); }
+        .geo li { border-left-color: var(--geo-color); }
+
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: auto;
+        }
+
+        /* Responsividade para celulares */
+        @media (max-width: 850px) {
+            .main-container {
+                flex-direction: column;
+                margin: 20px;
+            }
+            .subject-column {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+        }
+    </style>
+ head>
+<body>
+
+    <header>
+        <h1>Guia de Estudos 2026</h1>
+    </header>
+
+    <main class="main-container">
+        
+        <section class="subject-column bio">
+            <h2>Biologia</h2>
+            <p class="description">Foco em Citologia: a unidade fundamental da vida.</p>
+            <h3>Tópicos para estudar:</h3>
+            <ul>
+                <li>Diferenças entre Células Procariontes e Eucariontes</li>
+                <li>Organelas Citoplasmáticas e suas funções</li>
+                <li>Membrana Plasmática: Transporte Ativo e Passivo</li>
+                <li>Ciclo Celular: Mitose e Meiose</li>
+                <li>Respiração Celular e Fotossíntese</li>
+            </ul>
+        </section>
+
+        <section class="subject-column qui">
+            <h2>Química</h2>
+            <p class="description">A evolução do pensamento sobre a estrutura da matéria.</p>
+            <h3>Tópicos para estudar:</h3>
+            <ul>
+                <li>Modelo de Dalton (Bola de Bilhar)</li>
+                <li>Modelo de Thomson (Pudim de Passas)</li>
+                <li>Experimento de Rutherford e o Núcleo Atômico</li>
+                <li>Postulados de Bohr e Níveis de Energia</li>
+                <li>Introdução ao Modelo Orbital Moderno</li>
+            </ul>
+        </section>
+
+        <section class="subject-column geo">
+            <h2>Geografia</h2>
+            <p class="description">A origem do planeta e as dinâmicas espaciais.</p>
+            <h3>Tópicos para estudar:</h3>
+            <ul>
+                <li>Teoria do Big Bang e a Formação da Terra</li>
+                <li>Movimento de Rotação e a sucessão dos dias/noites</li>
+                <li>Translação e as Estações do Ano</li>
+                <li>Solstícios e Equinócios</li>
+                <li>Estrutura Interna: Crosta, Manto e Núcleo</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p><strong>Plataforma Acadêmica de Ciências</strong><br>
+        Organizando seu conhecimento para o futuro &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
