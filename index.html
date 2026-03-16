@@ -1,150 +1,355 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hub de Conhecimento: Bio, Qui e Geo</title>
+    <title>Ciências da Natureza & Geografia | Células, Átomos e Terra</title>
     <style>
-        :root {
-            --bio-color: #2d6a4f;
-            --qui-color: #0077b6;
-            --geo-color: #bc6c25;
-            --text-dark: #2b2d42;
-            --bg-gray: #f8f9fa;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: #edf2f4;
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        /* Título Centralizado */
-        header {
-            background: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-bottom: 5px solid #d9d9d9;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-            color: #1a1a1a;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-        }
-
-        header p {
-            color: #666;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
-        /* Container Principal com 3 Colunas */
-        .main-content {
-            display: flex;
-            max-width: 1400px;
-            margin: 40px auto;
-            background: white;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .column {
-            flex: 1;
-            padding: 40px;
-            /* Linhas verticais separadoras */
-            border-right: 1px solid #eee;
+            background: linear-gradient(145deg, #f0f7fb 0%, #e6f0f5 100%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
         }
 
-        .column:last-child {
-            border-right: none;
+        /* container principal */
+        .page-wrapper {
+            max-width: 1300px;
+            width: 100%;
         }
 
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        /* cabeçalho suave */
+        .intro-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro-header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #1e3c4f, #2b5e7a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro-header p {
+            font-size: 1.3rem;
+            color: #2c4c66;
+            border-bottom: 2px dashed #9bb8d4;
+            padding-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        /* grid de 3 colunas verticais - cada coluna é uma matéria */
+        .colunas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2.5rem 0 3rem;
+        }
+
+        /* cartão de cada disciplina */
+        .card-materia {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem 2rem 1.5rem 1.5rem;
+            box-shadow: 0 20px 30px -10px rgba(27, 58, 75, 0.3), 
+                        0 8px 15px rgba(0,30,50,0.1),
+                        inset 0 2px 4px rgba(255,255,255,0.8);
+            padding: 1.8rem 1.6rem 2rem;
+            border: 1px solid rgba(255,255,255,0.7);
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card-materia:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 38px -12px #1d4c63;
+            background: rgba(255, 255, 255, 0.95);
+            border-color: #c2e2f0;
+        }
+
+        /* cores de borda superiores (detalhe) */
+        .card-materia.bio {
+            border-top: 8px solid #2e7d5e;
+        }
+        .card-materia.quim {
+            border-top: 8px solid #c97c3d;
+        }
+        .card-materia.geo {
+            border-top: 8px solid #4a6fa5;
+        }
+
+        /* título da disciplina */
+        .titulo-materia {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            letter-spacing: -0.5px;
+        }
+        .bio .titulo-materia { color: #1e6b50; }
+        .quim .titulo-materia { color: #b45f2a; }
+        .geo .titulo-materia { color: #345b8c; }
+
+        /* tema específico (subtítulo) */
+        .tema-especifico {
+            font-size: 1.3rem;
+            font-weight: 600;
+            background: rgba(0,0,0,0.03);
+            padding: 0.4rem 0.8rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 0.5rem 0 1.2rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .bio .tema-especifico { background: #dbf2e9; color: #0b4635; }
+        .quim .tema-especifico { background: #feedd9; color: #8e4d20; }
+        .geo .tema-especifico { background: #d9e6f5; color: #1f4870; }
+
+        /* descrição da matéria (texto com explicação) */
+        .descricao-materia {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #183b4a;
+            margin-bottom: 1.5rem;
+            background: rgba(250,250,252,0.7);
+            padding: 0.9rem;
+            border-radius: 18px;
+            border-left: 4px solid #aac7df;
+        }
+
+        /* tópicos de estudo (assuntos) */
+        .assuntos-titulo {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 1rem 0 0.8rem;
+            color: #1f4b5e;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
+        }
+        .assuntos-titulo span {
+            font-size: 1.5rem;
         }
 
-        /* Estilização por matéria */
-        .bio-col h2 { color: var(--bio-color); }
-        .qui-col h2 { color: var(--qui-color); }
-        .geo-col h2 { color: var(--geo-color); }
-
-        .intro-text {
-            font-size: 1rem;
-            text-align: justify;
-            margin-bottom: 30px;
-            color: #4a4a4a;
-        }
-
-        .study-box {
-            background: var(--bg-gray);
-            padding: 20px;
-            border-radius: 10px;
+        .lista-assuntos {
+            list-style: none;
+            margin-bottom: 1.2rem;
             flex-grow: 1;
         }
 
-        .study-box h3 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 12px;
+        .lista-assuntos li {
+            padding: 0.6rem 0.8rem 0.6rem 2rem;
+            background: rgba(255,255,255,0.5);
+            margin-bottom: 8px;
+            border-radius: 30px;
             font-weight: 500;
+            position: relative;
+            transition: 0.15s;
+            border: 1px solid rgba(145,180,200,0.2);
+        }
+        .lista-assuntos li:hover {
+            background: white;
+            border-color: #80b5d1;
+            transform: scale(1.02);
+            box-shadow: 0 3px 7px rgba(0,0,0,0.05);
         }
 
-        /* Rodapé */
+        /* bullets personalizados */
+        .bio .lista-assuntos li::before {
+            content: "🧬";
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            font-size: 1.1rem;
+        }
+        .quim .lista-assuntos li::before {
+            content: "⚛️";
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            font-size: 1.1rem;
+        }
+        .geo .lista-assuntos li::before {
+            content: "🌍";
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            font-size: 1.1rem;
+        }
+
+        /* rodapé */
         footer {
-            background: #1a1a1a;
-            color: #8d99ae;
+            margin-top: 3.5rem;
+            background: #112f3f;
+            color: #e0eef7;
+            padding: 2rem 2.5rem;
+            border-radius: 3rem 3rem 1.5rem 1.5rem;
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 50px;
+            box-shadow: 0 10px 25px #0a2a36;
+            width: 100%;
         }
 
-        footer strong {
+        .footer-content p {
+            font-size: 1.1rem;
+            margin: 0.4rem 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 1.2rem 0 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #b9dcec;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted transparent;
+            transition: border 0.2s;
+        }
+
+        .footer-links a:hover {
+            border-bottom: 1px dotted #b9dcec;
             color: white;
         }
 
-        /* Ajuste para dispositivos móveis */
-        @media (max-width: 992px) {
-            .main-content {
-                flex-direction: column;
+        .copyright {
+            font-size: 0.95rem;
+            opacity: 0.75;
+            margin-top: 1.2rem;
+        }
+
+        /* responsividade: empilha em telas menores */
+        @media (max-width: 850px) {
+            .colunas-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-            .column {
-                border-right: none;
-                border-bottom: 1px solid #eee;
+            .intro-header h1 {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="page-wrapper">
+        <!-- cabeçalho explicativo -->
+        <div class="intro-header">
+            <h1>🌱 matéria viva · átomos · planeta 🌍</h1>
+            <p>biologia, química e geografia: fundamentos da ciência</p>
+        </div>
 
-    <header>
-        <h1>Portal das Ciências Naturais</h1>
-        <p>Explore os fundamentos que explicam a vida, a matéria e o nosso planeta.</p>
-    </header>
+        <!-- três colunas verticais (cada uma = disciplina) -->
+        <div class="colunas-grid">
+            
+            <!-- COLUNA 1 - BIOLOGIA (células) -->
+            <div class="card-materia bio">
+                <div class="titulo-materia">Biologia</div>
+                <div class="tema-especifico">tema: células</div>
+                
+                <div class="descricao-materia">
+                    <strong>O que estuda?</strong> A biologia é a ciência que investiga a vida em todas as suas formas e níveis. 
+                    Desde moléculas e células até ecossistemas, busca compreender a estrutura, função, crescimento, origem e evolução dos seres vivos.
+                </div>
+                
+                <div class="assuntos-titulo">
+                    <span>📘</span> assuntos sobre células
+                </div>
+                <ul class="lista-assuntos">
+                    <li>Teoria celular (todos os seres vivos são formados por células)</li>
+                    <li>Célula procariótica × eucariótica</li>
+                    <li>Organelas: núcleo, mitocôndrias, retículo endoplasmático</li>
+                    <li>Membrana plasmática e transporte</li>
+                    <li>Divisão celular: mitose e meiose</li>
+                    <li>Metabolismo energético: fotossíntese e respiração</li>
+                </ul>
+                <p style="font-size:0.9rem; color:#2d5a6e; margin-top:0.5rem;">🔬 estudo da unidade básica da vida</p>
+            </div>
 
-    <main class="main-content">
-        
-        <section class="column bio-col">
-            <h2>🌿 Biologia</h2>
-            <div class="intro-text">
-                A Biologia é a ciência que se dedica ao estudo da vida em todas as suas formas e níveis de organização. Ela investiga desde o
+            <!-- COLUNA 2 - QUÍMICA (modelos atômicos) -->
+            <div class="card-materia quim">
+                <div class="titulo-materia">Química</div>
+                <div class="tema-especifico">tema: modelos atômicos</div>
+                
+                <div class="descricao-materia">
+                    <strong>O que estuda?</strong> A química é a ciência que analisa a composição, estrutura e transformações da matéria. 
+                    Ela explica como os átomos se combinam para formar moléculas e como as substâncias interagem.
+                </div>
+                
+                <div class="assuntos-titulo">
+                    <span>⚗️</span> assuntos sobre modelos atômicos
+                </div>
+                <ul class="lista-assuntos">
+                    <li>Modelo de Dalton (esfera maciça e indivisível)</li>
+                    <li>Modelo de Thomson (pudim de passas)</li>
+                    <li>Modelo de Rutherford (sistema planetário)</li>
+                    <li>Modelo de Bohr (camadas eletrônicas)</li>
+                    <li>Modelo quântico / nuvem eletrônica</li>
+                    <li>Partículas subatômicas: prótons, nêutrons, elétrons</li>
+                </ul>
+                <p style="font-size:0.9rem; color:#7b4a28; margin-top:0.5rem;">⚛️ evolução da ideia de átomo</p>
+            </div>
+
+            <!-- COLUNA 3 - GEOGRAFIA (movimentos da Terra e sua criação) -->
+            <div class="card-materia geo">
+                <div class="titulo-materia">Geografia</div>
+                <div class="tema-especifico">tema: movimentos da Terra e sua criação</div>
+                
+                <div class="descricao-materia">
+                    <strong>O que estuda?</strong> A geografia estuda a superfície terrestre, a relação sociedade-natureza e os fenômenos físicos, biológicos e humanos. 
+                    Neste tema, abordamos a formação do planeta e seus movimentos no espaço.
+                </div>
+                
+                <div class="assuntos-titulo">
+                    <span>🌎</span> assuntos sobre Terra em movimento
+                </div>
+                <ul class="lista-assuntos">
+                    <li>Origem da Terra (nebulosa solar, acreação)</li>
+                    <li>Rotação: dias e noites, movimento aparente do Sol</li>
+                    <li>Translação: anos, estações do ano e afélio/periélio</li>
+                    <li>Inclinação do eixo e zonas térmicas</li>
+                    <li>Movimento de precessão e nutação</li>
+                    <li>Consequências: coriolis, fusos horários</li>
+                </ul>
+                <p style="font-size:0.9rem; color:#2f5577; margin-top:0.5rem;">🌌 dinâmica e origem do nosso planeta</p>
+            </div>
+        </div>
+
+        <!-- RODAPÉ completo com créditos e informações institucionais -->
+        <footer>
+            <div class="footer-content">
+                <p style="font-size:1.4rem; font-weight:300;">🧪 Ciência aberta · aprendizado contínuo 📚</p>
+                <div class="footer-links">
+                    <a href="#">Biologia celular</a>
+                    <a href="#">Modelos atômicos</a>
+                    <a href="#">Movimentos da Terra</a>
+                    <a href="#">Conteúdo didático</a>
+                </div>
+                <p>🌿 site educativo desenvolvido para explorar células, átomos e o planeta em que vivemos</p>
+                <p class="copyright">© 2025 — Matérias em foco: biologia, química, geografia | Todos os conceitos são de livre estudo</p>
+                <p style="margin-top:1rem;">✉️ contato: estudar@ciencias.earth | 📍 rodapé informativo</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- pequeno detalhe extra: ondas decorativas (só um toque) -->
+    <div style="position:fixed; bottom:20px; left:20px; opacity:0.2; font-size:2rem; pointer-events:none;">🔬 ⚛️ 🌐</div>
+</body>
+</html>
