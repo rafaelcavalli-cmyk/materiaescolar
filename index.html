@@ -3,186 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal de Estudos Científicos</title>
+    <title>Hub de Conhecimento: Bio, Qui e Geo</title>
     <style>
         :root {
             --bio-color: #2d6a4f;
             --qui-color: #0077b6;
-            --geo-color: #a47148;
-            --bg-body: #f4f7f6;
+            --geo-color: #bc6c25;
+            --text-dark: #2b2d42;
+            --bg-gray: #f8f9fa;
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: var(--bg-body);
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #edf2f4;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
+        /* Título Centralizado */
         header {
+            background: white;
+            padding: 60px 20px;
             text-align: center;
-            padding: 50px 20px;
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 5px solid #d9d9d9;
         }
 
-        h1 {
+        header h1 {
             margin: 0;
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: #1a1a1a;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
 
-        .main-container {
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Container Principal com 3 Colunas */
+        .main-content {
             display: flex;
-            flex: 1;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 40px auto;
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-radius: 12px;
+            background: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 8px;
             overflow: hidden;
         }
 
-        .subject-column {
+        .column {
             flex: 1;
-            padding: 40px 30px;
-            /* As "linhas verticais" são criadas com as bordas laterais */
+            padding: 40px;
+            /* Linhas verticais separadoras */
             border-right: 1px solid #eee;
-            transition: background 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .subject-column:last-child {
+        .column:last-child {
             border-right: none;
-        }
-
-        .subject-column:hover {
-            background-color: #fafafa;
         }
 
         h2 {
             font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Estilização por matéria */
+        .bio-col h2 { color: var(--bio-color); }
+        .qui-col h2 { color: var(--qui-color); }
+        .geo-col h2 { color: var(--geo-color); }
+
+        .intro-text {
+            font-size: 1rem;
+            text-align: justify;
+            margin-bottom: 30px;
+            color: #4a4a4a;
+        }
+
+        .study-box {
+            background: var(--bg-gray);
+            padding: 20px;
+            border-radius: 10px;
+            flex-grow: 1;
+        }
+
+        .study-box h3 {
             margin-top: 0;
-            border-bottom: 3px solid;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        /* Cores Temáticas */
-        .bio h2 { color: var(--bio-color); border-color: var(--bio-color); }
-        .qui h2 { color: var(--qui-color); border-color: var(--qui-color); }
-        .geo h2 { color: var(--geo-color); border-color: var(--geo-color); }
-
-        p.description {
-            font-style: italic;
-            color: #666;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
-
-        h3 {
-            font-size: 1.1rem;
-            color: #444;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
         }
 
         ul {
-            list-style: none;
-            padding: 0;
+            padding-left: 20px;
         }
 
         li {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            border-left: 4px solid #ddd;
+            margin-bottom: 12px;
+            font-weight: 500;
         }
 
-        /* Destaque das listas no hover */
-        .bio li { border-left-color: var(--bio-color); }
-        .qui li { border-left-color: var(--qui-color); }
-        .geo li { border-left-color: var(--geo-color); }
-
+        /* Rodapé */
         footer {
-            background-color: #1a1a1a;
-            color: white;
+            background: #1a1a1a;
+            color: #8d99ae;
             text-align: center;
-            padding: 30px;
-            margin-top: auto;
+            padding: 40px 20px;
+            margin-top: 50px;
         }
 
-        /* Responsividade para celulares */
-        @media (max-width: 850px) {
-            .main-container {
+        footer strong {
+            color: white;
+        }
+
+        /* Ajuste para dispositivos móveis */
+        @media (max-width: 992px) {
+            .main-content {
                 flex-direction: column;
-                margin: 20px;
             }
-            .subject-column {
+            .column {
                 border-right: none;
                 border-bottom: 1px solid #eee;
             }
         }
     </style>
- head>
+</head>
 <body>
 
     <header>
-        <h1>Guia de Estudos 2026</h1>
+        <h1>Portal das Ciências Naturais</h1>
+        <p>Explore os fundamentos que explicam a vida, a matéria e o nosso planeta.</p>
     </header>
 
-    <main class="main-container">
+    <main class="main-content">
         
-        <section class="subject-column bio">
-            <h2>Biologia</h2>
-            <p class="description">Foco em Citologia: a unidade fundamental da vida.</p>
-            <h3>Tópicos para estudar:</h3>
-            <ul>
-                <li>Diferenças entre Células Procariontes e Eucariontes</li>
-                <li>Organelas Citoplasmáticas e suas funções</li>
-                <li>Membrana Plasmática: Transporte Ativo e Passivo</li>
-                <li>Ciclo Celular: Mitose e Meiose</li>
-                <li>Respiração Celular e Fotossíntese</li>
-            </ul>
-        </section>
-
-        <section class="subject-column qui">
-            <h2>Química</h2>
-            <p class="description">A evolução do pensamento sobre a estrutura da matéria.</p>
-            <h3>Tópicos para estudar:</h3>
-            <ul>
-                <li>Modelo de Dalton (Bola de Bilhar)</li>
-                <li>Modelo de Thomson (Pudim de Passas)</li>
-                <li>Experimento de Rutherford e o Núcleo Atômico</li>
-                <li>Postulados de Bohr e Níveis de Energia</li>
-                <li>Introdução ao Modelo Orbital Moderno</li>
-            </ul>
-        </section>
-
-        <section class="subject-column geo">
-            <h2>Geografia</h2>
-            <p class="description">A origem do planeta e as dinâmicas espaciais.</p>
-            <h3>Tópicos para estudar:</h3>
-            <ul>
-                <li>Teoria do Big Bang e a Formação da Terra</li>
-                <li>Movimento de Rotação e a sucessão dos dias/noites</li>
-                <li>Translação e as Estações do Ano</li>
-                <li>Solstícios e Equinócios</li>
-                <li>Estrutura Interna: Crosta, Manto e Núcleo</li>
-            </ul>
-        </section>
-
-    </main>
-
-    <footer>
-        <p><strong>Plataforma Acadêmica de Ciências</strong><br>
-        Organizando seu conhecimento para o futuro &copy; 2026</p>
-    </footer>
-
-</body>
-</html>
+        <section class="column bio-col">
+            <h2>🌿 Biologia</h2>
+            <div class="intro-text">
+                A Biologia é a ciência que se dedica ao estudo da vida em todas as suas formas e níveis de organização. Ela investiga desde o
