@@ -3,353 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciências da Natureza & Geografia | Células, Átomos e Terra</title>
+    <title>Ciências em cards | Biologia, Química, Geografia + temas</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
-            background: linear-gradient(145deg, #f0f7fb 0%, #e6f0f5 100%);
+            background: linear-gradient(165deg, #dbeafe 0%, #f0f9ff 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem 1rem;
+            padding: 2rem 1.5rem;
         }
 
-        /* container principal */
-        .page-wrapper {
-            max-width: 1300px;
+        .container {
+            max-width: 1400px;
             width: 100%;
         }
 
-        /* cabeçalho suave */
-        .intro-header {
+        .cabecalho {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
-        .intro-header h1 {
-            font-size: 2.8rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #1e3c4f, #2b5e7a);
+        .cabecalho h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #103b4e, #2b6a8f);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 10px rgba(0,60,90,0.1);
         }
 
-        .intro-header p {
-            font-size: 1.3rem;
-            color: #2c4c66;
-            border-bottom: 2px dashed #9bb8d4;
-            padding-bottom: 0.8rem;
+        .cabecalho p {
+            font-size: 1.35rem;
+            color: #255e7c;
+            border-bottom: 2px solid #9ac7e0;
             display: inline-block;
+            padding-bottom: 10px;
         }
 
-        /* grid de 3 colunas verticais - cada coluna é uma matéria */
-        .colunas-grid {
+        /* grade principal: 3 colunas (cada uma com 2 cards empilhados) */
+        .grade-materias {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin: 2.5rem 0 3rem;
+            margin: 2rem 0 3.5rem;
         }
 
-        /* cartão de cada disciplina */
-        .card-materia {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(4px);
-            border-radius: 2rem 2rem 1.5rem 1.5rem;
-            box-shadow: 0 20px 30px -10px rgba(27, 58, 75, 0.3), 
-                        0 8px 15px rgba(0,30,50,0.1),
-                        inset 0 2px 4px rgba(255,255,255,0.8);
-            padding: 1.8rem 1.6rem 2rem;
-            border: 1px solid rgba(255,255,255,0.7);
-            transition: all 0.25s;
+        /* cada coluna agrupa dois cards */
+        .coluna-materia {
             display: flex;
             flex-direction: column;
-            height: 100%;
+            gap: 1.8rem;
         }
 
-        .card-materia:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 28px 38px -12px #1d4c63;
-            background: rgba(255, 255, 255, 0.95);
-            border-color: #c2e2f0;
+        /* estilo base do card */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            box-shadow: 0 18px 30px -12px #1b4b66,
+                        0 6px 12px rgba(0, 35, 50, 0.2);
+            padding: 1.8rem 1.5rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255,255,255,0.9);
+            display: flex;
+            flex-direction: column;
         }
 
-        /* cores de borda superiores (detalhe) */
-        .card-materia.bio {
-            border-top: 8px solid #2e7d5e;
-        }
-        .card-materia.quim {
-            border-top: 8px solid #c97c3d;
-        }
-        .card-materia.geo {
-            border-top: 8px solid #4a6fa5;
+        .card:hover {
+            transform: scale(1.02) translateY(-5px);
+            background: white;
+            border-color: #b1d9f0;
+            box-shadow: 0 25px 35px -12px #1b5d7c;
         }
 
-        /* título da disciplina */
+        /* cartão principal (com a descrição geral da matéria) */
+        .card-principal {
+            border-top: 10px solid;
+        }
+
+        .card-principal.bio { border-top-color: #1d7a5a; }
+        .card-principal.quim { border-top-color: #cc8143; }
+        .card-principal.geo { border-top-color: #3f6ca0; }
+
+        /* cartão de aprofundamento (tema específico) */
+        .card-tema {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(4px);
+            border-left: 12px solid;
+            border-radius: 1.5rem 2rem 2rem 1.5rem;
+        }
+
+        .card-tema.bio { border-left-color: #1d7a5a; }
+        .card-tema.quim { border-left-color: #cc8143; }
+        .card-tema.geo { border-left-color: #3f6ca0; }
+
         .titulo-materia {
             font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
-            letter-spacing: -0.5px;
+            margin-bottom: 0.3rem;
         }
-        .bio .titulo-materia { color: #1e6b50; }
-        .quim .titulo-materia { color: #b45f2a; }
-        .geo .titulo-materia { color: #345b8c; }
 
-        /* tema específico (subtítulo) */
-        .tema-especifico {
-            font-size: 1.3rem;
-            font-weight: 600;
-            background: rgba(0,0,0,0.03);
-            padding: 0.4rem 0.8rem;
-            border-radius: 40px;
-            display: inline-block;
-            margin: 0.5rem 0 1.2rem;
+        .bio .titulo-materia { color: #0f543b; }
+        .quim .titulo-materia { color: #aa5f28; }
+        .geo .titulo-materia { color: #274e7c; }
+
+        .subtema {
+            font-size: 1.2rem;
+            font-weight: 500;
+            background: rgba(0,0,0,0.02);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            width: fit-content;
+            margin: 0.5rem 0 1rem;
             border: 1px solid rgba(0,0,0,0.05);
         }
-        .bio .tema-especifico { background: #dbf2e9; color: #0b4635; }
-        .quim .tema-especifico { background: #feedd9; color: #8e4d20; }
-        .geo .tema-especifico { background: #d9e6f5; color: #1f4870; }
 
-        /* descrição da matéria (texto com explicação) */
-        .descricao-materia {
+        .texto-descritivo {
             font-size: 1.05rem;
             line-height: 1.6;
-            color: #183b4a;
-            margin-bottom: 1.5rem;
-            background: rgba(250,250,252,0.7);
-            padding: 0.9rem;
-            border-radius: 18px;
-            border-left: 4px solid #aac7df;
+            color: #1d4457;
+            margin-bottom: 1.2rem;
+            background: #f3faff;
+            padding: 1rem 1.2rem;
+            border-radius: 20px;
+            border: 1px solid #cde3f0;
         }
 
-        /* tópicos de estudo (assuntos) */
-        .assuntos-titulo {
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin: 1rem 0 0.8rem;
-            color: #1f4b5e;
+        .topicos-titulo {
             display: flex;
             align-items: center;
             gap: 6px;
-        }
-        .assuntos-titulo span {
-            font-size: 1.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0.8rem;
+            color: #1b4a60;
         }
 
-        .lista-assuntos {
+        .topicos-lista {
             list-style: none;
-            margin-bottom: 1.2rem;
-            flex-grow: 1;
         }
 
-        .lista-assuntos li {
-            padding: 0.6rem 0.8rem 0.6rem 2rem;
-            background: rgba(255,255,255,0.5);
-            margin-bottom: 8px;
-            border-radius: 30px;
+        .topicos-lista li {
+            padding: 0.5rem 0.5rem 0.5rem 2rem;
+            background: rgba(255,255,245,0.7);
+            margin-bottom: 6px;
+            border-radius: 40px;
             font-weight: 500;
+            border: 1px solid #bdd8e8;
             position: relative;
-            transition: 0.15s;
-            border: 1px solid rgba(145,180,200,0.2);
-        }
-        .lista-assuntos li:hover {
-            background: white;
-            border-color: #80b5d1;
-            transform: scale(1.02);
-            box-shadow: 0 3px 7px rgba(0,0,0,0.05);
         }
 
-        /* bullets personalizados */
-        .bio .lista-assuntos li::before {
-            content: "🧬";
+        .topicos-lista li::before {
             position: absolute;
-            left: 6px;
-            top: 6px;
+            left: 8px;
+            top: 4px;
             font-size: 1.1rem;
         }
-        .quim .lista-assuntos li::before {
-            content: "⚛️";
-            position: absolute;
-            left: 6px;
-            top: 6px;
-            font-size: 1.1rem;
+
+        .bio .topicos-lista li::before { content: "🧫"; }
+        .quim .topicos-lista li::before { content: "⚛️"; }
+        .geo .topicos-lista li::before { content: "🌍"; }
+
+        /* card tema extra: explicação do assunto */
+        .explicacao-tema {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #16323f;
+            background: rgba(255,255,240,0.6);
+            border-radius: 18px;
+            padding: 1.1rem;
+            margin: 1rem 0 0.5rem;
+            border: 1px dashed #7cb1cc;
         }
-        .geo .lista-assuntos li::before {
-            content: "🌍";
-            position: absolute;
-            left: 6px;
-            top: 6px;
-            font-size: 1.1rem;
+
+        .destaque {
+            font-weight: 600;
+            color: #004466;
         }
 
         /* rodapé */
         footer {
-            margin-top: 3.5rem;
-            background: #112f3f;
-            color: #e0eef7;
-            padding: 2rem 2.5rem;
-            border-radius: 3rem 3rem 1.5rem 1.5rem;
+            background: #0a2838;
+            color: #d4e9f5;
+            padding: 2.5rem 2rem;
+            border-radius: 4rem 4rem 2rem 2rem;
+            margin-top: 2rem;
             text-align: center;
-            box-shadow: 0 10px 25px #0a2a36;
+            box-shadow: 0 15px 25px #02121e;
             width: 100%;
-        }
-
-        .footer-content p {
-            font-size: 1.1rem;
-            margin: 0.4rem 0;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2.5rem;
-            margin: 1.2rem 0 0.8rem;
+            gap: 2.2rem;
+            margin: 1rem 0;
             flex-wrap: wrap;
         }
 
         .footer-links a {
-            color: #b9dcec;
+            color: #b3dff5;
             text-decoration: none;
             font-weight: 500;
-            border-bottom: 1px dotted transparent;
-            transition: border 0.2s;
+            border-bottom: 1px dotted;
         }
 
-        .footer-links a:hover {
-            border-bottom: 1px dotted #b9dcec;
-            color: white;
-        }
+        .footer-links a:hover { color: white; }
 
         .copyright {
+            opacity: 0.7;
             font-size: 0.95rem;
-            opacity: 0.75;
             margin-top: 1.2rem;
         }
 
-        /* responsividade: empilha em telas menores */
-        @media (max-width: 850px) {
-            .colunas-grid {
+        @media (max-width: 900px) {
+            .grade-materias {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
-            .intro-header h1 {
-                font-size: 2.2rem;
-            }
+            .cabecalho h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <div class="page-wrapper">
-        <!-- cabeçalho explicativo -->
-        <div class="intro-header">
-            <h1>🌱 matéria viva · átomos · planeta 🌍</h1>
-            <p>biologia, química e geografia: fundamentos da ciência</p>
+    <div class="container">
+        <div class="cabecalho">
+            <h1>🔬 3 ciências · 6 cards</h1>
+            <p>cada matéria com visão geral + foco no tema</p>
         </div>
 
-        <!-- três colunas verticais (cada uma = disciplina) -->
-        <div class="colunas-grid">
+        <!-- grade com três colunas (cada coluna contém dois cards) -->
+        <div class="grade-materias">
             
-            <!-- COLUNA 1 - BIOLOGIA (células) -->
-            <div class="card-materia bio">
-                <div class="titulo-materia">Biologia</div>
-                <div class="tema-especifico">tema: células</div>
-                
-                <div class="descricao-materia">
-                    <strong>O que estuda?</strong> A biologia é a ciência que investiga a vida em todas as suas formas e níveis. 
-                    Desde moléculas e células até ecossistemas, busca compreender a estrutura, função, crescimento, origem e evolução dos seres vivos.
+            <!-- COLUNA BIOLOGIA (2 CARDS) -->
+            <div class="coluna-materia">
+                <!-- CARD 1: visão geral da biologia -->
+                <div class="card card-principal bio">
+                    <div class="titulo-materia">Biologia</div>
+                    <div class="subtema">🌿 a ciência da vida</div>
+                    <div class="texto-descritivo">
+                        <strong>O que estuda?</strong> A biologia investiga os seres vivos – sua estrutura, origem, evolução, funções e interações. 
+                        É a base para entender desde microrganismos até ecossistemas completos.
+                    </div>
+                    <div class="topicos-titulo">📋 tópicos gerais</div>
+                    <ul class="topicos-lista bio">
+                        <li>Genética e evolução</li>
+                        <li>Fisiologia animal e vegetal</li>
+                        <li>Ecologia e biodiversidade</li>
+                        <li>Bioquímica e moléculas da vida</li>
+                    </ul>
                 </div>
-                
-                <div class="assuntos-titulo">
-                    <span>📘</span> assuntos sobre células
+
+                <!-- CARD 2: TEMA ESPECÍFICO - CÉLULAS (explicação extra) -->
+                <div class="card card-tema bio">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+                        <span style="font-size: 2rem;">🧪</span>
+                        <span style="font-weight: 700; font-size: 1.8rem; color: #135c40;">tema: células</span>
+                    </div>
+                    <div class="explicacao-tema">
+                        <span class="destaque">🔬 Aprofundamento – citologia:</span> A célula é a unidade básica, estrutural e funcional de todos os organismos. 
+                        O estudo das células (citologia) revela como funcionam os tecidos, órgãos e sistemas. 
+                        Abrange desde organelas (como mitocôndrias e ribossomos) até os processos de divisão celular e sinalização.
+                    </div>
+                    <div class="topicos-titulo">🧬 assuntos em destaque</div>
+                    <ul class="topicos-lista bio">
+                        <li>Membrana: transporte ativo/passivo</li>
+                        <li>Citoesqueleto e movimento celular</li>
+                        <li>Ciclo celular: interfase, mitose, meiose</li>
+                        <li>Células-tronco e diferenciação</li>
+                        <li>Respiração celular e fermentação</li>
+                    </ul>
+                    <p style="margin-top: 0.6rem; font-style: italic; background: #e5f3ea; padding: 0.4rem 1rem; border-radius: 30px;">“a célula é a menor porção de vida com organização”</p>
                 </div>
-                <ul class="lista-assuntos">
-                    <li>Teoria celular (todos os seres vivos são formados por células)</li>
-                    <li>Célula procariótica × eucariótica</li>
-                    <li>Organelas: núcleo, mitocôndrias, retículo endoplasmático</li>
-                    <li>Membrana plasmática e transporte</li>
-                    <li>Divisão celular: mitose e meiose</li>
-                    <li>Metabolismo energético: fotossíntese e respiração</li>
-                </ul>
-                <p style="font-size:0.9rem; color:#2d5a6e; margin-top:0.5rem;">🔬 estudo da unidade básica da vida</p>
             </div>
 
-            <!-- COLUNA 2 - QUÍMICA (modelos atômicos) -->
-            <div class="card-materia quim">
-                <div class="titulo-materia">Química</div>
-                <div class="tema-especifico">tema: modelos atômicos</div>
-                
-                <div class="descricao-materia">
-                    <strong>O que estuda?</strong> A química é a ciência que analisa a composição, estrutura e transformações da matéria. 
-                    Ela explica como os átomos se combinam para formar moléculas e como as substâncias interagem.
+            <!-- COLUNA QUÍMICA (2 CARDS) -->
+            <div class="coluna-materia">
+                <!-- CARD 1: visão geral da química -->
+                <div class="card card-principal quim">
+                    <div class="titulo-materia">Química</div>
+                    <div class="subtema">⚗️ transformações da matéria</div>
+                    <div class="texto-descritivo">
+                        <strong>O que estuda?</strong> A química estuda a composição, estrutura e propriedades da matéria, bem como as reações que transformam uma substância em outra. 
+                        É a ciência que explica ligações, reações e energia envolvida.
+                    </div>
+                    <div class="topicos-titulo">📋 tópicos gerais</div>
+                    <ul class="topicos-lista quim">
+                        <li>Ligações químicas (iônica, covalente)</li>
+                        <li>Funções inorgânicas e orgânicas</li>
+                        <li>Estequiometria e balanceamento</li>
+                        <li>Termoquímica e cinética</li>
+                    </ul>
                 </div>
-                
-                <div class="assuntos-titulo">
-                    <span>⚗️</span> assuntos sobre modelos atômicos
+
+                <!-- CARD 2: TEMA ESPECÍFICO - MODELOS ATÔMICOS -->
+                <div class="card card-tema quim">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+                        <span style="font-size: 2rem;">⚛️</span>
+                        <span style="font-weight: 700; font-size: 1.8rem; color: #b45f2a;">modelos atômicos</span>
+                    </div>
+                    <div class="explicacao-tema">
+                        <span class="destaque">🔍 Afinal, o que são modelos atômicos?</span> São representações que os cientistas criaram para explicar a estrutura do átomo ao longo da história. 
+                        Cada modelo reflete o conhecimento disponível em sua época – desde a esfera indivisível de Dalton até a nuvem eletrônica da mecânica quântica. 
+                        Eles nos ajudam a entender como os elétrons se organizam e como ocorrem as ligações.
+                    </div>
+                    <div class="topicos-titulo">🧪 principais modelos</div>
+                    <ul class="topicos-lista quim">
+                        <li>Dalton (1808) – esfera maciça e indivisível</li>
+                        <li>Thomson (1897) – pudim de passas</li>
+                        <li>Rutherford (1911) – núcleo denso + eletrosfera</li>
+                        <li>Bohr (1913) – camadas com níveis de energia</li>
+                        <li>Modelo quântico (atual) – orbitais e incerteza</li>
+                    </ul>
+                    <p style="margin-top: 0.6rem; background: #feedda; padding: 0.3rem 1rem; border-radius: 30px;">⚛️ cada modelo é uma peça na história da ciência</p>
                 </div>
-                <ul class="lista-assuntos">
-                    <li>Modelo de Dalton (esfera maciça e indivisível)</li>
-                    <li>Modelo de Thomson (pudim de passas)</li>
-                    <li>Modelo de Rutherford (sistema planetário)</li>
-                    <li>Modelo de Bohr (camadas eletrônicas)</li>
-                    <li>Modelo quântico / nuvem eletrônica</li>
-                    <li>Partículas subatômicas: prótons, nêutrons, elétrons</li>
-                </ul>
-                <p style="font-size:0.9rem; color:#7b4a28; margin-top:0.5rem;">⚛️ evolução da ideia de átomo</p>
             </div>
 
-            <!-- COLUNA 3 - GEOGRAFIA (movimentos da Terra e sua criação) -->
-            <div class="card-materia geo">
-                <div class="titulo-materia">Geografia</div>
-                <div class="tema-especifico">tema: movimentos da Terra e sua criação</div>
-                
-                <div class="descricao-materia">
-                    <strong>O que estuda?</strong> A geografia estuda a superfície terrestre, a relação sociedade-natureza e os fenômenos físicos, biológicos e humanos. 
-                    Neste tema, abordamos a formação do planeta e seus movimentos no espaço.
+            <!-- COLUNA GEOGRAFIA (2 CARDS) -->
+            <div class="coluna-materia">
+                <!-- CARD 1: visão geral da geografia -->
+                <div class="card card-principal geo">
+                    <div class="titulo-materia">Geografia</div>
+                    <div class="subtema">🌐 espaço, sociedade e natureza</div>
+                    <div class="texto-descritivo">
+                        <strong>O que estuda?</strong> A geografia analisa a superfície terrestre, a distribuição de fenômenos físicos e humanos, e a relação entre sociedade e meio ambiente. 
+                        Une conhecimentos de cartografia, clima, relevo e dinâmicas populacionais.
+                    </div>
+                    <div class="topicos-titulo">📋 tópicos gerais</div>
+                    <ul class="topicos-lista geo">
+                        <li>Cartografia e representações</li>
+                        <li>Climatologia e vegetação</li>
+                        <li>Geopolítica e urbanização</li>
+                        <li>Hidrografia e relevo</li>
+                    </ul>
                 </div>
-                
-                <div class="assuntos-titulo">
-                    <span>🌎</span> assuntos sobre Terra em movimento
+
+                <!-- CARD 2: TEMA ESPECÍFICO - MOVIMENTOS DA TERRA + CRIAÇÃO -->
+                <div class="card card-tema geo">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+                        <span style="font-size: 2rem;">🌍</span>
+                        <span style="font-weight: 700; font-size: 1.8rem; color: #2c5985;">movimentos da Terra e criação</span>
+                    </div>
+                    <div class="explicacao-tema">
+                        <span class="destaque">🌌 Origem e dinâmica terrestre:</span> A Terra formou-se há cerca de 4,5 bilhões de anos a partir da nebulosa solar (acreção). 
+                        Seus movimentos principais – rotação (girar em torno de si) e translação (ao redor do Sol) – determinam dias, noites, anos e estações. 
+                        Além disso, movimentos como precessão e nutação influenciam o clima em escalas longas.
+                    </div>
+                    <div class="topicos-titulo">📡 assuntos em foco</div>
+                    <ul class="topicos-lista geo">
+                        <li>Formação: teoria da nebulosa / acreação</li>
+                        <li>Rotação → sucessão dos dias e fusos</li>
+                        <li>Translação + inclinação do eixo → estações</li>
+                        <li>Periélio e afélio (distância Sol)</li>
+                        <li>Movimento de precessão dos equinócios</li>
+                        <li>Consequências: Coriolis, zonas térmicas</li>
+                    </ul>
+                    <p style="margin-top: 0.6rem; background: #d9ebf7; padding: 0.3rem 1rem; border-radius: 30px;">🌞 um planeta em constante dança cósmica</p>
                 </div>
-                <ul class="lista-assuntos">
-                    <li>Origem da Terra (nebulosa solar, acreação)</li>
-                    <li>Rotação: dias e noites, movimento aparente do Sol</li>
-                    <li>Translação: anos, estações do ano e afélio/periélio</li>
-                    <li>Inclinação do eixo e zonas térmicas</li>
-                    <li>Movimento de precessão e nutação</li>
-                    <li>Consequências: coriolis, fusos horários</li>
-                </ul>
-                <p style="font-size:0.9rem; color:#2f5577; margin-top:0.5rem;">🌌 dinâmica e origem do nosso planeta</p>
             </div>
         </div>
 
-        <!-- RODAPÉ completo com créditos e informações institucionais -->
+        <!-- RODAPÉ COMPLETO -->
         <footer>
-            <div class="footer-content">
-                <p style="font-size:1.4rem; font-weight:300;">🧪 Ciência aberta · aprendizado contínuo 📚</p>
-                <div class="footer-links">
-                    <a href="#">Biologia celular</a>
-                    <a href="#">Modelos atômicos</a>
-                    <a href="#">Movimentos da Terra</a>
-                    <a href="#">Conteúdo didático</a>
-                </div>
-                <p>🌿 site educativo desenvolvido para explorar células, átomos e o planeta em que vivemos</p>
-                <p class="copyright">© 2025 — Matérias em foco: biologia, química, geografia | Todos os conceitos são de livre estudo</p>
-                <p style="margin-top:1rem;">✉️ contato: estudar@ciencias.earth | 📍 rodapé informativo</p>
+            <p style="font-size: 1.6rem; font-weight: 300;">📚 cards duplos · estudo integrado</p>
+            <div class="footer-links">
+                <a href="#">Biologia celular</a>
+                <a href="#">Modelos atômicos</a>
+                <a href="#">Movimentos da Terra</a>
+                <a href="#">Conteúdo adicional</a>
             </div>
+            <p>✴️ site educativo com cards explicativos — cada matéria ganha um card extra com aprofundamento no tema.</p>
+            <p class="copyright">© 2025 | Ciências da Natureza & Geografia | aprendizado visual por camadas</p>
+            <p style="margin-top: 0.6rem;">📧 contato: estudar@cardsciencias.net</p>
         </footer>
     </div>
-
-    <!-- pequeno detalhe extra: ondas decorativas (só um toque) -->
-    <div style="position:fixed; bottom:20px; left:20px; opacity:0.2; font-size:2rem; pointer-events:none;">🔬 ⚛️ 🌐</div>
 </body>
 </html>
